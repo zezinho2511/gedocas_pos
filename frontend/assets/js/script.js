@@ -38,7 +38,7 @@ $(function () {
             data: {
                 name: $('input[name="name"]').val(),
                 type: $('select[name="type"]').val(),
-                smallword: $('textarea').val()
+                description: $('textarea').val()
             }, url: $(this).attr('action'), method: 'POST',
             crossDomain: true,
             headers: {
