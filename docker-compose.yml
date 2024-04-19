@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: python-server
+    build: ./docker/python
+    restart: always
+    ports:
+      - 5000:5000
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: "4GB"
+  nginx:
+    container_name: nginx-server
+    build: ./docker/nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./frontend:/var/www
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: "4GB"
+networks:
+  app-network:
+    driver: bridge
